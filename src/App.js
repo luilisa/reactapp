@@ -15,7 +15,8 @@ function App() {
             <Route  path = "/" element = {<ListUserComponent />}/>
             <Route  path = "/users" element = {<ListUserComponent />}/>
             <Route path = "/create-user" element = {<CreateUserComponent />}/>
-            <Route path = "/update-user/:id" element = {<UpdateUserComponent />}/>
+            <Route path = "/update-user/:id" element = {<UpdateUserComponent />}  />
+            <Route  path = "/portfolios" element = {<ListPortfolioComponent />}/>
            </Routes>
            </div>
            </Router>

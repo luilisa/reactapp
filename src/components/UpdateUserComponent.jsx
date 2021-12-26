@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import UserService from '../services/UserService';
-import { Link as RouterLink, Navigate, useParams } from "react-router-dom";
-
+import { Link as RouterLink, Navigate, useParams} from "react-router-dom";
+function withParams(Component) {
+    return props => <Component {...props} params={useParams()} />;
+  }
 class UpdateUserComponent extends Component {
     constructor(props) {
         super(props)
-        
+        let { id } = this.props.params;
         this.state = {
-            id: this.props.match.params.id,
+            id: id,
             login: '',
             password: '',
             redirect: false
@@ -21,16 +23,22 @@ class UpdateUserComponent extends Component {
     componentDidMount() {
         UserService.getUserById(this.state.id).then((response) => {
             let user = response.data;
-            this.setState({login: user.login, password:user.password});
+            this.setState({id: user.id, login: user.login, password:user.password});
         });
     }
 
 
     updateUser = (e) => {
-        e.preventDefault();
         let user = {login: this.state.login, password: this.state.password};
+        UserService.updateUser(user, this.state.id).then((response) => {
+           
+            // this.forceUpdate();
+            console.log(response.data);
+        
+        });
+        this.state.redirect = true
         this.forceUpdate();
-        console.log(JSON.stringify(user));
+        console.log(this.state.redirect)
     }
 
     changeLoginHandler = (event) => {
@@ -53,7 +61,7 @@ class UpdateUserComponent extends Component {
                 <div className = "container" >
                     <div className='row'>
                         <div className='card w-50 offset-md-3 offset-md-3'>
-                            <h3 className='text-center'> Create User</h3>
+                            <h3 className='text-center'> Update User</h3>
                             <div className='card-body' >
                                 <form>
                                     <div className='form-group'>
@@ -80,4 +88,4 @@ class UpdateUserComponent extends Component {
 }
 
 
-export default UpdateUserComponent;
+export default withParams(UpdateUserComponent);

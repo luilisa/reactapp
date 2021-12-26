@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import UserService from '../services/UserService';
+import PortfolioService from '../services/PortfolioService';
 import { Link as RouterLink, Navigate, useParams } from "react-router-dom";
 
-class ListUserComponent extends Component {
+class ListPortfolioComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -62,4 +62,4 @@ class ListUserComponent extends Component {
     }
 }
 
-export default ListUserComponent;
+export default ListPortfolioComponent;
