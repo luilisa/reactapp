@@ -33,6 +33,9 @@ class HeaderComponent extends Component {
               <a className="nav-link" href="/companies">Companies</a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="/stocks">Stocks</a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/portfolios">Portfolios</a>
             </li>
           </ul>
